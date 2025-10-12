@@ -1,0 +1,6 @@
+stow-local-ignore
+stow-global-ignore
+
+.tmux
+
+.zcompdump*
