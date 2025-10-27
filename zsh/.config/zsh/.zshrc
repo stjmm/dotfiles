@@ -1,7 +1,3 @@
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # .zshenv in home
 
 # aliases
@@ -27,7 +23,6 @@ setopt autocd
 setopt append_history inc_append_history share_history
 setopt hist_ignore_dups hist_ignore_space 
 setopt auto_menu menu_complete
-setopt auto_param_slash
 setopt no_case_glob no_case_match
 setopt extended_glob
 setopt globdots

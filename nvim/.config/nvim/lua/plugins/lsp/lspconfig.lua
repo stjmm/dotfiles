@@ -89,8 +89,11 @@ return {
             cmd = {
                 "clangd",
                 "--clang-tidy",
+                "--completion-style=detailed",
             }
         })
         vim.lsp.enable("clangd")
+
+        vim.lsp.enable("gopls")
     end,
 }

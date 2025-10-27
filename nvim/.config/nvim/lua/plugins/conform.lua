@@ -8,8 +8,9 @@ return {
             formatters_by_ft = {
                 c = { "clang-format" },
                 cpp = { "clang-format" },
-                lua = { "stylua" },
+                go = { "goimports", "golines" },
                 python = { "black" },
+                lua = { "stylua" },
                 javascript = { "prettier" },
                 typescript = { "prettier" },
                 javascriptreact = { "prettier" },

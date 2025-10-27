@@ -1,6 +1,6 @@
 stow-local-ignore
 stow-global-ignore
 
-.tmux
+tmux/.config/tmux/.tmux
 
-.zcompdump*
+zsh/.config/zsh/.zcompdump*

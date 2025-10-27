@@ -9,8 +9,6 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
 vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
 vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
 
--- TODO: splitting and resizing
-
 -- Move code up and down
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move lines up in visual selection" })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move lines down in visual selection" })
@@ -24,7 +22,7 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- Clears search highlight with ESC
-vim.keymap.set("n", "<Esc>", ":nohl<CR>", { desc = "Clear search highlight", silent = true , noremap = true })
+vim.keymap.set("n", "<Esc>", ":nohl<CR>", { desc = "Clear search highlight", silent = true, noremap = true })
 
 -- Indent without exiting
 vim.keymap.set("v", "<", "<gv", opts)

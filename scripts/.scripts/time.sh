@@ -3,6 +3,7 @@
 CATEGORIES=(
     "WORK"
     "WASTE"
+    "ART"
     "STOP"
 )
 

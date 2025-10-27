@@ -28,6 +28,7 @@ return {
                 "clangd",
                 "lua_ls",
                 "rust_analyzer",
+                "gopls",
             },
             automatic_installation = true,
         })
@@ -35,6 +36,8 @@ return {
         mason_tool_installer.setup({
             ensure_installed = {
                 "clang-format",
+                "goimports",
+                "golines",
             },
         })
     end,

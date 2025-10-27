@@ -16,7 +16,7 @@ return {
                 save_on_toggle = true,
             }
         })
-        
+
         vim.keymap.set("n", "<leader>a", function()
             harpoon:list():add()
         end, { desc = "Harpoon add file" })
