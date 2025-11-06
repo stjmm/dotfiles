@@ -55,3 +55,10 @@ source ~/.local/share/powerlevel10k/powerlevel10k.zsh-theme
 # autosuggestions, syntax highlighting, install with package manager first
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# fnm
+FNM_PATH="/home/franek/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "`fnm env`"
+fi
