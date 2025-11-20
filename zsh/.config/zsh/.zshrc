@@ -1,4 +1,4 @@
-# .zshenv in home
+# .zshenv in HOME
 
 # aliases
 alias vim="nvim"
@@ -29,7 +29,6 @@ setopt globdots
 setopt interactive_comments
 
 # hist
-HISTFILE="$XDG_CACHE_HOME/zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
 HISTCONTROL=ignoreboth
@@ -45,20 +44,20 @@ bindkey "^K" history-search-backward
 bindkey "^R" fzf-history-widget
 bindkey -e
 
+# pyenv
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
+
+# fzf
 source <(fzf --zsh)
+
+# fnm
+[ -d "$FNM_PATH" ] && eval "$(fnm env)"
 
 # p10k
 source ~/.local/share/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+
 # autosuggestions, syntax highlighting, install with package manager first
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# fnm
-FNM_PATH="/home/franek/.local/share/fnm"
-if [ -d "$FNM_PATH" ]; then
-  export PATH="$FNM_PATH:$PATH"
-  eval "`fnm env`"
-fi

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 set +e
 
 dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=wlroots
@@ -17,7 +18,4 @@ fi
 echo "Xft.dpi: 150" | xrdb -merge
 gsettings set org.gnome.desktop.interface text-scaling-factor 1.5
 
-export LANG=en_US.UTF-8
-export LC_TIME=en_US.UTF-8
-export TZ=Europe/Warsaw
 waybar -c ~/.config/mango/config.jsonc -s ~/.config/mango/style.css &
