@@ -13,12 +13,14 @@ return {
                 lua = { "stylua" },
                 javascript = { "prettier" },
                 typescript = { "prettier" },
-                javascriptreact = { "prettier" },
                 typescriptreact = { "prettier" },
+                javascriptreact = { "prettier" },
                 markdown = { "prettier" },
                 css = { "prettier" },
                 html = { "prettier" },
                 json = { "prettier" },
+                jsonc = { "prettier" },
+                yaml = { "prettier" },
             }
         })
 

@@ -95,5 +95,34 @@ return {
         vim.lsp.enable("clangd")
 
         vim.lsp.enable("gopls")
+
+        vim.lsp.config("pyright", {
+            settings = {
+                python = {
+                    analysis = {
+                        typeCheckingMode = "basic",
+                        autoSearchPairs = true,
+                        useLibraryCodeForTypes = true,
+                    }
+                }
+            }
+        })
+        vim.lsp.enable("pyright")
+
+        vim.lsp.config("ts_ls", {
+            settings = {
+                completions = {
+                    completeFunctionCalls = true,
+                },
+            },
+        })
+        vim.lsp.enable("ts_ls")
+
+        vim.lsp.config("eslint", {
+            settings = {
+                workingDirectory = { mode = "auto" },
+            },
+        })
+        vim.lsp.enable("eslint")
     end,
 }

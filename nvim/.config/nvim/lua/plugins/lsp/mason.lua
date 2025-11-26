@@ -29,6 +29,9 @@ return {
                 "lua_ls",
                 "rust_analyzer",
                 "gopls",
+                "pyright",
+                "ts_ls",
+                "eslint",
             },
             automatic_installation = true,
         })
@@ -38,6 +41,10 @@ return {
                 "clang-format",
                 "goimports",
                 "golines",
+                "black",
+                "prettier",
+                "eslint_d",
+                "ruff",
             },
         })
     end,
