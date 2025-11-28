@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 export EDITOR="nvim"
 export TERM="ghostty"
@@ -21,6 +21,11 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 # fnm
 export FNM_PATH="$HOME/.local/share/fnm"
 [ -d "$FNM_PATH" ] && export PATH="$FNM_PATH:$PATH"
+
+# Android dev
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export LANG=en_US.UTF-8
 export LC_TIME=en_US.UTF-8

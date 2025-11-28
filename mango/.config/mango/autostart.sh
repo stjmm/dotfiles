@@ -15,7 +15,9 @@ if ! pgrep -x hypridle >/dev/null; then
     hypridle -c ~/.config/hypr/hypridle.conf &
 fi
 
-echo "Xft.dpi: 150" | xrdb -merge
-gsettings set org.gnome.desktop.interface text-scaling-factor 1.5
+echo "Xft.dpi: 160" | xrdb -merge
+gsettings set org.gnome.desktop.interface text-scaling-factor 1.6
 
-waybar -c ~/.config/mango/config.jsonc -s ~/.config/mango/style.css &
+waybar -c ~/.config/waybar/config.jsonc -s ~/.config/waybar/style.css &
+
+mako &

@@ -7,6 +7,7 @@ return {
         local curr_internal_conf =  require("vague.config.internal").current
         local theme = require("vague.groups.lualine").get_colors(curr_internal_conf)
         theme.visual.a.bg = "#d8647e"
+        -- local theme = 'gruvbox-material'
 
         local mode = {
             "mode",
