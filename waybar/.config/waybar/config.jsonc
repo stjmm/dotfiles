@@ -1,0 +1,81 @@
+{
+    "layer": "top",
+    "height": 34,
+    "spacing": 4,
+    "modules-left": [
+        "ext/workspaces",
+        "dwl/window#layout",
+        "dwl/window#title"
+    ],
+    "modules-right": [
+        "network",
+        "cpu",
+        "memory",
+        "disk",
+        "battery",
+        "clock",
+        "tray"
+    ],
+
+    "ext/workspaces": {
+        "format": "{icon}",
+        "ignore-hidden": false,
+        "on-click": "activate",
+        "sort-by-id": true
+    },
+    "dwl/window#layout": {
+        "format": "[{layout}]"
+    },
+    "dwl/window#title": {
+        "format": "{title}",
+        "max-length": 48
+    },
+    "network": {
+        "format": "<span color=\"#7aa2f7\"> </span>Online",
+        "format-disconnected": "<span color=\"#f7768e\">⚠ </span>Disconnected",
+        "tooltip-format": "{ifname} via {gwaddr}"
+    },
+    "cpu": {
+        "format": "<span color=\"#7aa2f7\"> </span>{usage}%",
+        "tooltip": false,
+        "interval": 3
+    },
+    "memory": {
+        "format": "<span color=\"#7aa2f7\"> </span>{used}GiB",
+        "interval": 3
+    },
+    "disk": {
+        "interval": 60,
+        "path": "/",
+        "format": "<span color=\"#7aa2f7\"> </span>{free}"
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "<span color=\"#7aa2f7\">{icon} </span>{capacity}%",
+        "format-plugged": "<span color=\"#7aa2f7\"> </span>{capacity}%",
+        "format-alt": "<span color=\"#7aa2f7\">{icon} </span>{time}",
+        "format-time": "{H}:{M}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "clock": {
+        "format": "<span color=\"#7aa2f7\"> </span>{:%H:%M:%S}",
+        "format-alt": "<span color=\"#7aa2f7\"> </span>{:%Y-%m-%d}",
+        "interval": 1,
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode"          : "year",
+            "mode-mon-col"  : 3,
+            "weeks-pos"     : "right",
+            "on-scroll"     : 1,
+            "on-click-right": "mode"
+        }
+    },
+    "tray": {
+        "icon-size": 18,
+        "spacing": 8
+    }
+}
