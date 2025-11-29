@@ -12,6 +12,8 @@
         "cpu",
         "memory",
         "disk",
+        "pulseaudio",
+        "backlight",
         "battery",
         "clock",
         "tray"
@@ -41,13 +43,26 @@
         "interval": 3
     },
     "memory": {
-        "format": "<span color=\"#7aa2f7\"> </span>{used}GiB",
+        "format": "<span color=\"#7aa2f7\"></span>{used}GiB",
         "interval": 3
     },
-    "disk": {
-        "interval": 60,
-        "path": "/",
-        "format": "<span color=\"#7aa2f7\"> </span>{free}"
+    "backlight": {
+        "format": "<span color=\"#7aa2f7\">{icon} </span>{percent}%",
+        "format-icons": ["", ""]
+    },
+    "pulseaudio": {
+        "format": "<span color=\"#7aa2f7\">{icon} </span>{volume}%",
+        "format-muted": "<span color=\"#f7768e\"> </span>Muted",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
     },
     "battery": {
         "states": {

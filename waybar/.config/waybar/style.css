@@ -1,7 +1,7 @@
 * {
     font-family: "JetBrainsMono Nerd Font", monospace;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 16.5px;
     color: #c0caf5;
 }
 
@@ -50,6 +50,8 @@ tooltip label {
 #disk,
 #battery,
 #clock,
+#pulseaudio,
+#backlight,
 #tray {
     background: rgba(21, 22, 30, 0.7);
     padding: 0px 10px;
