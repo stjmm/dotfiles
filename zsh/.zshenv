@@ -24,8 +24,7 @@ export FNM_PATH="$HOME/.local/share/fnm"
 
 # Android dev
 export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator
 
 export LANG=en_US.UTF-8
 export LC_TIME=en_US.UTF-8

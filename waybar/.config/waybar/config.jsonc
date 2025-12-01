@@ -11,7 +11,6 @@
         "network",
         "cpu",
         "memory",
-        "disk",
         "pulseaudio",
         "backlight",
         "battery",
@@ -43,7 +42,7 @@
         "interval": 3
     },
     "memory": {
-        "format": "<span color=\"#7aa2f7\"></span>{used}GiB",
+        "format": "<span color=\"#7aa2f7\"> </span>{used}GiB",
         "interval": 3
     },
     "backlight": {
@@ -52,7 +51,7 @@
     },
     "pulseaudio": {
         "format": "<span color=\"#7aa2f7\">{icon} </span>{volume}%",
-        "format-muted": "<span color=\"#f7768e\"> </span>Muted",
+        "format-muted": "<span color=\"#f7768e\"> </span>Muted",
         "format-icons": {
             "headphone": "",
             "hands-free": "",
@@ -77,7 +76,7 @@
         "format-icons": ["", "", "", "", ""]
     },
     "clock": {
-        "format": "<span color=\"#7aa2f7\"> </span>{:%H:%M:%S}",
+        "format": "<span color=\"#7aa2f7\"> </span>{:%H:%M}",
         "format-alt": "<span color=\"#7aa2f7\"> </span>{:%Y-%m-%d}",
         "interval": 1,
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
