@@ -43,7 +43,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
     { desc = "Replace current word globally" })
 
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+vim.keymap.set("n", "<leader>bf", vim.lsp.buf.format)
 
 -- Copy filepath to the clipboard
 vim.keymap.set("n", "<leader>fp", function()
