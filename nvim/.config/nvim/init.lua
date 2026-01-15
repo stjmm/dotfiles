@@ -12,6 +12,7 @@ vim.opt.scrolloff = 10
 vim.opt.sidescrolloff = 10
 vim.opt.showmode = false
 vim.opt.smoothscroll = true
+vim.opt.winborder = "rounded"
 
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
@@ -56,7 +57,7 @@ vim.keymap.set("n", "<leader>fp", function()
 end, { desc = "Copy absolute path" })
 
 vim.keymap.set("n", "<leader>rc", function()
-    vim.cmd("edit " .. vim.fn.stdpath("~/.config/nvim") .. "/init.lua")
+    vim.cmd("edit " .. vim.fn.stdpath("config") .. "/init.lua")
 end, { desc = "Edit Neovim config" })
 
 --- Autocommands ---
@@ -133,9 +134,11 @@ vim.pack.add({
     "https://github.com/lukas-reineke/indent-blankline.nvim",
     "https://github.com/nvim-mini/mini.pairs",
     "https://github.com/nvim-mini/mini.pick",
+    "https://github.com/nvim-mini/mini.ai",
 })
 require("ibl").setup({})
 require("mini.pairs").setup({})
+require("mini.ai").setup({})
 require("mini.pick").setup({
     mappings = {
         move_down = "<C-j>",
@@ -149,16 +152,17 @@ vim.keymap.set('n', '<leader>fg', function() pick.builtin.grep_live() end, { des
 vim.keymap.set('n', '<leader>fb', function() pick.builtin.buffers() end, { desc = 'Find Buffers' })
 
 -- Treesitter
--- TODO: Fix whatever is wrong here...
+-- This config uses Treesitters new main branch,
+-- which removes some functionalities
 vim.pack.add({
-    "https://github.com/nvim-treesitter/nvim-treesitter"
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" }
 })
-require("nvim-treesitter.config").setup({
-    highlight = { enable = true },
-    indent = { enable = true },
-    autotag = { enable = true },
-    auto_install = true,
-    ensure_installed = { "c", "cpp", "lua", "python", "javascript", "typescript", "markdown", "bash"},
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevel = 99
+require("nvim-treesitter").install({
+    "c", "cpp", "bash", "markdown", "lua",
+    "python", "javascript", "typescript",
 })
 
 -- LSP, Mason, Autocomplete
@@ -198,7 +202,7 @@ vim.lsp.config("lua_ls", {
             diagnostics = { globals = { "vim" } },
             workspace = {
                 library = vim.api.nvim_get_runtime_file("", true),
-                checkThridParty = false,
+                checkThirdParty = false,
             },
         },
     },
@@ -265,4 +269,37 @@ vim.diagnostic.config({
         header = "",
         prefix = "",
     },
+})
+
+--- Format and lint ---
+vim.pack.add({
+    "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
+    "https://github.com/stevearc/conform.nvim",
+})
+
+require("mason-tool-installer").setup({
+    ensure_installed = {
+        "clang-format",
+        "stylua",
+        "black",
+        "isort",
+    }
+})
+
+require("conform").setup({
+    formatters_by_ft = {
+        lua = { "stylua" },
+        c = { "clang-format" },
+        cpp = { "clang-format" },
+        python = { "isort", "black" },
+    },
+
+    vim.keymap.set({ "n", "v" }, "<leader><F3>", function ()
+        require("conform").format({
+            lsp_fallback = true,
+            async = false,
+            timeout_ms = 500,
+        })
+        vim.notify("Formatted buffer")
+    end, { desc = "Format file" })
 })
