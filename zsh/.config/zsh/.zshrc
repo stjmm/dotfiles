@@ -2,6 +2,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+autoload -Uz compinit
+compinit
+
 zmodload zsh/complist
 zstyle ':completion:*' menu select
 zstyle ':completion:*' special-dirs true
@@ -12,7 +15,7 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
 
 setopt append_history inc_append_history share_history
-setopt auto_menu menu_complete
+setopt auto_menu
 setopt no_case_glob no_case_match
 setopt globdots
 setopt extended_glob
@@ -32,9 +35,24 @@ alias la="ls -alF --color=auto --group-directories-first"
 bindkey "^j" history-search-forward
 bindkey "^k" history-search-backward
 
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+
+# Programs
+typeset -U path
+path=(
+    "$HOME/.local/bin"
+    "$HOME/.local/share/fnm"
+    "$HOME/local/share/pyenv"
+    "$HOME/.cargo/bin"
+    $path
+)
+export PATH
+
+eval "$(fnm env --use-on-cd)"
+if command -v pyenv >/dev/null; then
+    eval "$(pyenv init -)"
+fi
 
 # Plugins
 source /usr/share/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
+[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

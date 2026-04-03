@@ -1,0 +1,6 @@
+set selection-clipboard clipboard
+set adjust-open "width"
+set render-loading "false"
+
+set scroll-step 40
+set zoom-step 10

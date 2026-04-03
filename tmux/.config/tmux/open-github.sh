@@ -10,6 +10,7 @@ if [[ $url == *github.com* ]]; then
         url="${url/:/\/}"
         url="https://$url"
     fi
+    url="${url%.git}"
     
     xdg-open "$url" > /dev/null 2>&1
 else
