@@ -74,8 +74,10 @@ vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 vim.pack.add({
     "https://github.com/nvim-mini/mini.pairs",
     "https://github.com/nvim-mini/mini.pick",
+    "https://github.com/nvim-mini/mini.extra",
 })
-require("mini.pairs").setup({})
+require("mini.pairs").setup()
+require("mini.extra").setup()
 require("mini.pick").setup({
     mappings = {
         move_down = "<C-j>",
@@ -84,8 +86,10 @@ require("mini.pick").setup({
     options = { use_cache = true },
 })
 local pick = require("mini.pick")
+local extra = require("mini.extra")
 vim.keymap.set("n", "<leader>ff", function () pick.builtin.files() end)
 vim.keymap.set("n", "<leader>fg", function () pick.builtin.grep_live() end)
+vim.keymap.set("n", "<leader>G",  function () extra.pickers.git_commits() end)
 
 -- Treesitter
 vim.pack.add({ "https://github.com/nvim-treesitter/nvim-treesitter" })
