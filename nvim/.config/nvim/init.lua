@@ -55,7 +55,10 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 --- Plugins ---
 -- Colorscheme
-vim.pack.add({ "https://github.com/vague-theme/vague.nvim"} )
+vim.pack.add({
+    "https://github.com/vague-theme/vague.nvim",
+    "https://github.com/projekt0n/github-nvim-theme"
+})
 vim.cmd("colorscheme vague")
 
 -- Oil
@@ -114,6 +117,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
         vim.keymap.set("n", "gq", vim.diagnostic.setqflist, opts)
 
+        vim.keymap.set("n", "<leader>f", function ()
+            vim.lsp.buf.format({ async = true })
+        end, opts)
+
         if client:supports_method("textDocument/completion") then
             vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = false} )
             vim.keymap.set("i", "<C-space>", "<C-x><C-o>", opts)
@@ -142,4 +149,9 @@ vim.lsp.config("lua_ls", {
     },
 })
 
-vim.lsp.enable({ "clangd", "lua_ls"})
+vim.lsp.enable({
+    "clangd",
+    "lua_ls",
+    "pyright",
+    "ruff"
+})
