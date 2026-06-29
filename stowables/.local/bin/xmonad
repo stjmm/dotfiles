@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+exec guix shell -m ~/.config/xmonad/manifest.scm -- xmonad "$0"
