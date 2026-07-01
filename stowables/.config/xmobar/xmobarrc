@@ -1,8 +1,9 @@
 Config
-  { font = "JetBrains Mono Bold 16"
-  , bgColor = "#000000"
-  , fgColor = "#ffffff"
-  , position = TopSize C 100 35 |
+  { font = "JetBrains Mono Bold 18"
+  , bgColor = "#222222"
+  , fgColor = "#bbbbbb"
+  , border = NoBorder
+  , position = TopSize C 100 40 |
   , commands = [Run XMonadLog]
   , template = "%XMonadLog%"
   }

@@ -8,9 +8,10 @@ myLayoutHook = avoidStruts $ layoutHook def
 
 myXmobarPP :: PP
 myXmobarPP = def
-	{ ppCurrent = xmobarColor "#0db9d7" ""
-	, ppHidden = xmobarColor "#a9b1d6" ""
-	, ppHiddenNoWindows = xmobarColor "#444b6a" ""
+	{ ppCurrent = xmobarColor "#eeeeee" "#005577"
+	, ppVisible = xmobarColor "#eeeeee" "#005577"
+	, ppHidden = xmobarColor "#bbbbbb" "#222222"
+	, ppHiddenNoWindows = xmobarColor "#666666" "#222222"
 	}
 
 myStatusBar = statusBarProp "xmobar" (pure myXmobarPP)
