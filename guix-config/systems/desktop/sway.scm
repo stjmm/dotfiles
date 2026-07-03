@@ -4,6 +4,7 @@
                #:use-module (gnu services xorg)
                #:use-module (gnu services desktop)
                #:use-module (gnu packages wm)
+               #:use-module (gnu packages xorg)
                #:use-module (gnu packages freedesktop)
                #:export (sway-system-packages
                           sway-system-services))

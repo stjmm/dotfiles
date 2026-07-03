@@ -1,4 +1,4 @@
-;; The role of this module is to provide
+;; the role of this module is to provide
 ;; desktop enviornment agnostic base configuration
 (define-module (guix-config systems base)
                #:use-module (gnu)
@@ -6,16 +6,17 @@
                #:use-module (gnu system nss)
                #:use-module (gnu system setuid)
                #:use-module (gnu system privilege)
+	       #:use-module (gnu packages
                #:use-module (nongnu packages linux)
                #:use-module (nongnu system linux-initrd)
                #:export (base-operating-system))
 
-(use-package-modules guix admin sysctl pm linux networking dns ssh
+(use-service-modules guix admin sysctl pm linux networking dns ssh
                      dbus avahi cups desktop xorg audio mcron)
 
 (use-package-modules shells bash vim certs file-systems nfs linux libusb
                      networking cups freedesktop fonts audio video gnome
-                     version-control package-management)
+                     version-control package-management curl)
 
 (define-public base-operating-system
                (operating-system
@@ -23,12 +24,12 @@
                  (timezone "Europe/Warsaw")
                  (locale "en_US.utf8")
 
-                 ;; Use non-free Linux
+                 ;; Use non-free linux
                  (kernel linux)
                  (initrd microcode-initrd)
                  (firmware (list linux-firmware))
 
-                 ;; Use the UEFI variant of GRUB with the EFI System
+                 ;; Use the uefi variant of grub with the efi system
                  ;; Partition mounted on /boot/efi
                  (bootloader (bootloader-configuration
                                (bootloader grub-efi-bootloader)
@@ -58,7 +59,7 @@
                                                         "lp")))
                               %base-user-accounts))
 
-                 ;; Basic system packages
+                 ;; basic system packages
                  (packages (cons* git
                                   curl
                                   wget
@@ -81,7 +82,7 @@
 
                        polkit-wheel-service
                        (service polkit-service-type)
-                       (service dbus-service-type)
+                       (service dbus-root-service-type)
 
                        ;; Networking
                        (service network-manager-service-type)
@@ -95,11 +96,11 @@
                        (service avahi-service-type)
                        (service udisks-service-type)
                        (service upower-service-type)
-                       (service cups-pk-service-type)
+                       (service cups-pk-helper-service-type)
                        (service geoclue-service-type)
                        fontconfig-file-system-service
 
-                       ;; Power management
+                       ;; Power Management
                        (service tlp-service-type
                                 (tlp-configuration
                                   (cpu-boost-on-ac? #t)
@@ -109,7 +110,6 @@
                                   (cpu-energy-perf-policy-on-bat "balance_power")))
 
                        ;; Printing/Scanning
-			       
                        (service sane-service-type)
                        (service cups-service-type
                                 (cups-configuration
@@ -125,12 +125,14 @@
 
 			       
                        ;; Garbage collection
-			       
                        (simple-service 'system-cron-jobs
                                        mcron-service-type
                                        (list #~(job "5 0 * * 0" "guix gc -d 2m -F 10G"))))))
 
                  (name-service-switch %mdns-host-lookup-nss)))
 
-(define (guix-home-config home-enviornment)
-  "
+(define-public (guix-home-config home-environment)
+  "Wrap HOME-ENVIRONMENT as a guix-home-service-type service for franek,
+so `guix system reconfigure' provisions Home too."
+  (service guix-home-service-type
+           `(("franek" ,home-environment))))

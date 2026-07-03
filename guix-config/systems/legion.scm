@@ -2,11 +2,12 @@
                #:use-module (gnu)
                #:use-module (gnu system)
                #:use-module (guix-config systems base)
-               #:use-module (guix-config systems desktop sway))
+               #:use-module (guix-config systems desktop sway)
+               #:use-module (guix-config home legion))
 
 (operating-system
   (inherit base-operating-system)
-  (host-name "based-guix")
+  (host-name "legion")
 
   (swap-devices
     (list (swap-space
@@ -27,6 +28,7 @@
               (operating-system-packages base-operating-system)
               sway-system-packages))
 
-  (packages (append
+  (services (append
               (operating-system-user-services base-operating-system)
-              sway-system-services))
+              sway-system-services
+              (list (guix-home-config legion-home-environment)))))
