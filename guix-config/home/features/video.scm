@@ -8,6 +8,7 @@
 (define video-home-packages
   (list ffmpeg
         mpv
+	vlc
         v4l-utils))
 
 (define video-home-services

@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+echo -e "Updating..."
+
+sudo guix system reconfigure -L ~/dotfiles ~/dotfiles/guix-config/systems/$(hostname).scm

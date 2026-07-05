@@ -10,7 +10,6 @@
     (inherit base-operating-system)
     (host-name "legion")
 
-    ;; Host-specific storage belongs here, not in base.scm.
     (swap-devices
       (list (swap-space
               (target (uuid "0973e257-0737-4416-81dc-f924ce6e21dd")))))
@@ -21,16 +20,15 @@
                (mount-point "/")
                (type "ext4"))
              (file-system
-               (device (uuid "B622-48F8" 'fat))
+               (device (uuid "b622-48f8" 'fat))
                (mount-point "/boot/efi")
                (type "vfat"))
              %base-file-systems))
 
-    ;; Guix Home is attached at the system level so one system reconfigure
-    ;; updates both the OS and the user environment.
+    ;; guix home is attached at the system level so one system reconfigure
+    ;; updates both the os and the user environment.
     (services
       (append (operating-system-user-services base-operating-system)
               (list (guix-home-config legion-home-environment))))))
 
-;; Apply the Sway wrapper. Swap this for another WM wrapper later.
 (operating-system-with-sway legion-base-operating-system)

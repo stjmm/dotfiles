@@ -3,8 +3,8 @@ set $term alacritty
 set $menu wofi --show drun
 
 output eDP-2 {
-	resolution 2560x1600@120Hz
-	scale 1.3
+	resolution 2880x1800@60Hz
+	scale 1.5
 	adaptive_sync on
 }
 

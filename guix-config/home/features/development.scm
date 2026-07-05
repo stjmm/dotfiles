@@ -8,7 +8,8 @@
 
 (use-package-modules assembly autotools base build-tools cmake
                      gdb guile llvm pkg-config python-xyz valgrind
-                     virtualization chez commencement flex shellutils)
+                     virtualization chez commencement flex shellutils
+		     tree-sitter)
 
 (define development-home-packages
   (list gcc-toolchain
@@ -25,7 +26,11 @@
         qemu
         nasm
 
-        guile-3.0))
+        guile-3.0
+
+	;; Language server stuff
+	tree-sitter
+	))
 
 (define development-home-services
   (list
