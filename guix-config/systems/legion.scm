@@ -10,6 +10,16 @@
     (inherit base-operating-system)
     (host-name "legion")
 
+    (bootloader
+      (bootloader-configuration
+        (inherit (operating-system-bootloader base-operating-system))
+        (menu-entries
+          (list
+            (menu-entry
+              (label "Windows")
+              (device (uuid "807B-2E7F" 'fat))
+              (chain-loader "/EFI/Microsoft/bootmgfw.efi"))))))
+
     (swap-devices
       (list (swap-space
               (target (uuid "0973e257-0737-4416-81dc-f924ce6e21dd")))))

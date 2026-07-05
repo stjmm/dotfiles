@@ -8,7 +8,7 @@
                           common-home-services))
 
 (use-package-modules admin compression file ncurses rust-apps tmux
-                     version-control vim)
+                     version-control vim pdf)
 
 (define common-home-packages
   (list git
@@ -20,7 +20,8 @@
         unzip
         tree
         fastfetch
-        ncurses))
+        ncurses
+	sioyek))
 
 (define common-home-services
   (list
