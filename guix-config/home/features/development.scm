@@ -18,6 +18,7 @@
         cmake
         bear
         autoconf
+        direnv
 
         clang-toolchain
         gdb
@@ -28,8 +29,9 @@
 
         guile-3.0
 
-	;; Language server stuff
-	tree-sitter
+	    ;; Language servers
+        tree-sitter
+        tree-sitter-cli
 	))
 
 (define development-home-services

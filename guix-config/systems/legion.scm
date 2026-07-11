@@ -18,7 +18,7 @@
             (menu-entry
               (label "Windows")
               (device (uuid "807B-2E7F" 'fat))
-              (chain-loader "/EFI/Microsoft/bootmgfw.efi"))))))
+              (chain-loader "/EFI/Microsoft/Boot/bootmgfw.efi"))))))
 
     (swap-devices
       (list (swap-space
