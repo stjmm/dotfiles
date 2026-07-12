@@ -38,9 +38,9 @@
                (bashrc
                  (list
                    (plain-file
-                     "source-stow-bashrc"
+                     "custom-bashrc"
                      "
-    if [[-r \"$HOME/.config/bash/bashrc\" ]]; then
+    if [[ -r \"$HOME/.config/bash/bashrc\" ]]; then
         source \"$HOME/.config/bash/bashrc\"
     fi
     ")))))
