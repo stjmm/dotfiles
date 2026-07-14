@@ -25,6 +25,7 @@
         grimshot
         slurp
         alacritty
+        foot
         icecat
         qtwayland
         font-jetbrains-mono))
