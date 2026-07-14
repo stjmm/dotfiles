@@ -1,13 +1,17 @@
+# Variables
 set $mod Mod4
-set $term alacritty
+set $term foot
 set $menu wofi --show drun
 
+# Output
 output eDP-2 {
 	resolution 2880x1800@60Hz
 	scale 1.5
 	adaptive_sync on
+    bg ~/Pictures/wall/mistymountains.jpg fill #000000
 }
 
+# Input
 input type:touchpad {
 	tap enabled
 	tap_button_map lrm
@@ -18,6 +22,7 @@ input type:touchpad {
 	middle_emulation enabled
 }
 
+# Appearance
 default_border pixel 1
 default_floating_border pixel 1
 hide_edge_borders smart
@@ -25,19 +30,82 @@ hide_edge_borders smart
 gaps inner 0
 gaps outer 0
 
+# Workspace behavior
 focus_follows_mouse yes
 focus_wrapping yes
 workspace_auto_back_and_forth yes
 
+# Applications and session
 bindsym $mod+Shift+Return exec $term
 bindsym $mod+p exec $menu
 bindsym $mod+Shift+c kill
 bindsym $mod+Shift+r reload
-bindsym $mod+Shift+q exec swayag \
-	-t warning \
-	-m "Exit Sway?" \
-	-b "Exit" "swaymsg exit"
+bindsym $mod+Shift+q exec swaynag \
+    -t warning \
+    -m "Exit Sway?" \
+    -b "Exit" "swaymsg exit"
 
+# Cycle through windows
+bindsym $mod+Tab focus next
+bindsym $mod+Shift+Tab focus prev
+
+# Focus a window by direction
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move windows
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Window states
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+
+# Layouts
+bindsym $mod+e layout toggle split
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+
+# Scratchpad
+bindsym $mod+minus move scratchpad
+bindsym $mod+Shift+minus scratchpad show
+
+# Resize mode
+mode "resize" {
+    bindsym h resize shrink width 10px
+    bindsym j resize grow height 10px
+    bindsym k resize shrink height 10px
+    bindsym l resize grow width 10px
+
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    bindsym Shift+h resize shrink width 50px
+    bindsym Shift+j resize grow height 50px
+    bindsym Shift+k resize shrink height 50px
+    bindsym Shift+l resize grow width 50px
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# Workspaces
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -68,13 +136,19 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 
+# System
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
-
 bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
 bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
 bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 
-exec_always killall waybar; waybar
-exec_always wl-paste --type text --watch cliphist store
-exec_always wl-paste --type image --watch cliphist store
+# Startup
+exec_always sh -c 'killall waybar 2>/dev/null; exec waybar'
+exec wl-paste --type text --watch cliphist store
+exec wl-paste --type image --watch cliphist store
+exec swayidle -w \
+    timeout 300 'swaylock -f' \
+    timeout 330 'swaymsg "output * power off"' \
+        resume 'swaymsg "output * power on"' \
+    before-sleep 'swaylock -f'
