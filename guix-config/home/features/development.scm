@@ -9,28 +9,47 @@
 (use-package-modules assembly autotools base build-tools cmake
                      gdb guile llvm pkg-config python-xyz valgrind
                      virtualization chez commencement flex shellutils
-		     tree-sitter)
+                     tree-sitter linux valgrind mtools rust golang)
 
 (define development-home-packages
   (list gcc-toolchain
-        gnu-make
-        pkgconf
-        cmake
-        bear
-        autoconf
-        direnv
-
         clang-toolchain
+
+        ;;Build tools
+        gnu-make
+        cmake
+        ninja
+        meson
+        pkgconf
+        bear
+        
+        ;; Autotools
+        autoconf
+        automake
+        libtool
+
+        ;; Debugging
         gdb
         valgrind
+        strace
 
+        ;; OS dev
         qemu
         nasm
+        mtools
 
+        ;; Other langs
+        rust
+        rust-analyzer
+        go
+
+        ;; Guix
         guile-3.0
 
-	    ;; Language servers
+	    ;; Editor tooling
         tree-sitter
+
+        direnv
         tree-sitter-cli
 	))
 

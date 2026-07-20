@@ -7,17 +7,22 @@
                           common-home-services))
 
 (use-package-modules admin compression file ncurses rust-apps tmux
-                     version-control vim pdf task-management)
+                     version-control vim pdf task-management
+                     package-management)
 
 (define common-home-packages
   (list git
         vim
+        neovim
         tmux
         ripgrep
         file
         zip
         unzip
         tree
+        htop
+        btop
+        stow
         fastfetch
         ncurses
         sioyek
@@ -32,6 +37,8 @@
                       ("VISUAL" . "nvim")
                       ("PATH" . "$HOME/.local/bin:$PATH")))
 
+    ;; This uses Guix defaults but sources your own bash config
+    ;; in ~/.config/bash/bashrc
     (service home-bash-service-type
              (home-bash-configuration
                (guix-defaults? #t)

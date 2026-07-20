@@ -64,11 +64,8 @@
                           curl
                           wget
                           htop
-                          tree
-                          stow
                           brightnessctl
                           vim
-                          neovim
                           %base-packages))
 
                  ;; WM-agnostic workstation services.  Sway, XMonad, GNOME, etc. should
