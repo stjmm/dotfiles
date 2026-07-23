@@ -9,11 +9,11 @@
                           sway-home-services))
 
 (use-package-modules fonts freedesktop gnuzilla image qt
-                     terminals wm xdisorg)
+                     terminals wm xdisorg window-management)
 
 (define sway-home-packages
   (list sway
-        swaylock
+        swaylock-effects
         swayidle
         swaybg
         waybar
