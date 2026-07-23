@@ -1,0 +1,98 @@
+{
+    "layer": "top",
+    "position": "top",
+    "spacing": 0,
+    "height": 22,
+
+    "modules-left": [
+        "sway/workspaces",
+        "sway/window"
+    ],
+
+    "modules-right": [
+        "pulseaudio",
+        "custom/separator",
+        "backlight",
+        "custom/separator",
+        "network",
+        "custom/separator",
+        "cpu",
+        "custom/separator",
+        "memory",
+        "custom/separator",
+        "battery",
+        "custom/separator",
+        "clock"
+    ],
+
+    "sway/window": {
+        "format": "{}",
+        "max-length": 70,
+        "rewrite": {
+            "": "desktop"
+        }
+    },
+
+    "pulseaudio": {
+        "format": "vol {volume}%",
+        "on-click": "pavucontrol",
+        "tooltip-format": "vol {volume}%",
+        "format-muted": "vol muted"
+    },
+
+    "network": {
+        "format-wifi": "wifi {essid}",
+        "format-ethernet": "eth {ifname}",
+        "format-disconnected": "wifi --",
+        "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+        "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+        "tooltip-format-disconnected": "Disconnected",
+        "interval": 3,
+        "on-click": "nmgui"
+    },
+
+    "cpu": {
+        "format": "cpu {usage}%",
+        "interval": 2,
+        "on-click": "foot -e btop"
+    },
+
+    "memory": {
+        "format": "mem {used:0.1f}gb",
+        "interval": 2,
+        "on-click": "foot -e btop"
+    },
+
+    "backlight": {
+        "format": "brt {percent}%",
+        "tooltip": false,
+        "scroll-step": 5,
+        "on-scroll-up": "brightnessctl set +5%",
+        "on-scroll-down": "brightnessctl set 5%-"
+    },
+
+    "battery": {
+        "format": "bat {capacity}%",
+        "format-discharging": "bat {capacity}%",
+        "format-charging": "bat {capacity}%",
+        "format-plugged": "bat {capacity}%",
+        "tooltip-format-discharging": "{power:>1.0f}W↓  {capacity}%\n{time} remaining",
+        "tooltip-format-charging": "{power:>1.0f}W↑  {capacity}%\n{time} until full",
+        "tooltip-format-plugged": "{capacity}% — plugged in",
+        "interval": 5,
+        "states": {
+            "warning": 15,
+            "critical": 5
+        }
+    },
+
+    "clock": {
+        "format": "{:%H:%M}",
+        "format-alt": "{:L%A %d %B}",
+        "tooltip": false
+    },
+
+    "custom/separator": {
+        "format": "|"
+    }
+}

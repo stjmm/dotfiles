@@ -59,7 +59,8 @@ vim.pack.add({
     "https://github.com/vague-theme/vague.nvim",
     "https://github.com/projekt0n/github-nvim-theme"
 })
-vim.cmd("colorscheme vague")
+-- vim.cmd("colorscheme vague")
+require("colors.lauds").setup()
 
 -- Oil
 vim.pack.add({ "https://github.com/stevearc/oil.nvim" })
