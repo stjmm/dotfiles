@@ -4,6 +4,14 @@
       "rev": "c106c9472154d6b2c74b74565616b877ae8ed31d",
       "src": "https://github.com/projekt0n/github-nvim-theme"
     },
+    "koda.nvim": {
+      "rev": "a7da3ced59eadafbda6eb4d7f7e2a6a3d9ecf858",
+      "src": "https://github.com/oskarnurm/koda.nvim"
+    },
+    "lush.nvim": {
+      "rev": "9c60ec2279d62487d942ce095e49006af28eed6e",
+      "src": "https://github.com/rktjmp/lush.nvim"
+    },
     "mini.extra": {
       "rev": "e5ecf197f8954d002cb9e85b3715851e2c8d3cd5",
       "src": "https://github.com/nvim-mini/mini.extra"
@@ -31,6 +39,10 @@
     "vague.nvim": {
       "rev": "49fe06ad33d8847b931ba4279197bda222374cd1",
       "src": "https://github.com/vague-theme/vague.nvim"
+    },
+    "zenbones.nvim": {
+      "rev": "8304d8df9b823ff11e103afa62f38c39f534abe6",
+      "src": "https://github.com/zenbones-theme/zenbones.nvim"
     }
   }
 }

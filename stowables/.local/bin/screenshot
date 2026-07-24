@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+directory="${XDG_PICTURES_DIR:-$HOME/Pictures}/screenshots"
+
+mkdir -p "$directory"
+
+filename="$directory/$(date '+%Y-%m-%d_%H-%M-%S').png"
+
+case "$mode" in
+    screen|fullscreen)
+        target="screen"
+        ;;
+    area)
+        target="area"
+        ;;
+    window|active)
+        target="active"
+        ;;
+    output)
+        target="output"
+        ;;
+    *)
+        echo 'Usage: screenshot [screen|area|window|active|output]' >&2
+        exit 1
+        ;;
+esac
+
+grimshot --notify savecopy "$target" "$filename"

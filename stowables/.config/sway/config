@@ -8,7 +8,7 @@ output eDP-2 {
 	resolution 2880x1800@60Hz
 	scale 1.5
 	adaptive_sync on
-    bg ~/Pictures/wall/mistymountains.jpg fill #000000
+    bg ~/Pictures/wall/0029.jpg fill #000000
 }
 
 # Input
@@ -26,7 +26,6 @@ input type:touchpad {
 default_border pixel 1
 default_floating_border pixel 1
 hide_edge_borders smart
-
 gaps inner 0
 gaps outer 0
 
@@ -48,6 +47,7 @@ bindsym $mod+Shift+q exec swaynag \
 # Cycle through windows
 bindsym $mod+Tab focus next
 bindsym $mod+Shift+Tab focus prev
+
 
 # Focus a window by direction
 bindsym $mod+h focus left
@@ -142,6 +142,11 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
 bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
 bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+
+# Screenshots
+bindsym Print exec ~/.local/bin/screenshot screen
+bindsym Shift+Print exec ~/.local/bin/screenshot area
+bindsym $mod+Print exec ~/.local/bin/screenshot window
 
 # Startup
 exec_always sh -c 'killall waybar 2>/dev/null; exec waybar'

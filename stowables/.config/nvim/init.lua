@@ -57,10 +57,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- Colorscheme
 vim.pack.add({
     "https://github.com/vague-theme/vague.nvim",
-    "https://github.com/projekt0n/github-nvim-theme"
+    "https://github.com/oskarnurm/koda.nvim",
 })
--- vim.cmd("colorscheme vague")
-require("colors.lauds").setup()
+vim.cmd("colorscheme koda")
 
 -- Oil
 vim.pack.add({ "https://github.com/stevearc/oil.nvim" })
