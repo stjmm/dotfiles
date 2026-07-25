@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+mode="${1:-}"
+
 directory="${XDG_PICTURES_DIR:-$HOME/Pictures}/screenshots"
 
 mkdir -p "$directory"
