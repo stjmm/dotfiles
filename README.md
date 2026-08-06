@@ -1,40 +1,49 @@
 # My modular Guix Config and Dotfiles
 
 This repository contains my (Non)Guix System, Guix Home and GNU Stow managed dotfiles.
+Guix manages packages and services, while Stow manages app configs and scripts.
 
-The config is split into modules: shared settings live in base modules while machine-specific settings,
-desktop enviornment and optional features are added on top.
+# Repo layout
 
-## Guix Config
+```text
+guix-config/
+    systems/        # Machine definitions
+    home/           # Guix Home enviornments
+        desktop/    # Desktop specific modules
+        features/   # Optional features
 
-The configuration is built in layers:
-
-`systems/base.scm` contains settings shared by all machines, like user, kernel, in my case nonguix kernel and firmware common packages and services shared by all my machines.
-
-`systems/legion.scm` inherit from the base and adds machine specific settings such as filesystems, desktop choice and home enviornment.
-
-The `desktop/` modules keep window-manager-specific configuration separate. This makes it easier to replace Sway with another Wayland compositor, an X11 window manager, or a desktop environment without rewriting the base configuration.
-
-The `features/` directories contain optional groups of packages and services. Features can be added to or removed from a host configuration as needed.
-
-## System and Home configurations
-
-System configuration contains machine-wide packages and services.
-
-Home configuration contains packages and services for the user. `home/common.scm` provides the shared user environment, while `home/legion.scm` combines it with other legion machine specific modules.
-
-The home environment is attached to the operating system using `guix-home-service-type`. Because of this, running a system reconfigure updates both the operating system and Guix Home:
-
-```bash
-sudo guix system reconfigure -L ~/dotfiles ~/dotfiles/guix-config/systems/$(hostname).scm
+stowables/          # Traditional configs files managed with GNU Stow
 ```
 
-A seperate `guix home reconfigure` command is not needed to update system.
+The `systems/` and `home/` directories follow a similar layout. Both contain shared base modules, desktop-specific modules, optional features, and a machine-specific entry point (for example, legion.scm) that composes everything together.
 
-## Dotfiles
+## Systems
 
-The `stowable/` direcotry contains configs for programs that I use.
+`systems/base.scm` contains configuration shared by every machine, such as users, Nonguix kernel and firmware, common packages and services.
 
-Link them with GNU Stow.
+Each machine inherits from base and adds its own hardware configuration, desktop enviornment and home enviornment. For example, `systems/legion.scm` defines configuration for my Lenovo Legion laptop.
 
-Guix manages most packages and services, while Stow manages regular configuration files and personal scripts.
+## Desktop modules
+
+Desktop modules keep window-manager-specific config seperate from the rest of the system. This makes it easy to switch between wayland compositors, x11 window-managers or any desktop enviornment without changing shared configuration.
+
+## Features modules
+
+The `features/` directories contain optional functionality, such as NVIDIA support, development tools or others. Features can be composed into a system as needed.
+
+## Guix Home
+
+Machine-wide packages and services belong in the system configuration.
+
+User-specific packages and applications belong in Guix Home. `home/common.scm` provides shared home user enviornment. Like systems `home/` has `features/` `desktop/` where machine-specific modules are added.
+
+Guix Home is attached to the operating system through `home/legion.scm` using guix-home-service-type, so a single command updates both operating system and user enviornment:
+
+`sudo guix system reconfigure -L ~/dotfiles ~/dotfiles/guix-config/systems/$(hostname).scm`
+
+A seperate `guix home reconfigure` is not needed.
+
+## Dotfiles 
+
+The `stowables/` directory contains config files that are managed by GNU Stow.
+

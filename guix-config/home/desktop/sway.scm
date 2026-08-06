@@ -42,6 +42,8 @@
                       ("XDG_SESSION_DESKTOP" . "sway")
                       ("XDG_SESSION_TYPE" . "wayland")
                       ("MOZ_ENABLE_WAYLAND" . "1")
+                      ("WLR_DRM_NO_MODIFIERS" . "1")
+                      ("WLR_RENDERER" . "vulkan")
                       ("SDL_VIDEODRIVER" . "wayland")
                       ("QT_QPA_PLATFORM" . "wayland")
                       ("_JAVA_AWT_WM_NONREPARENTING" . "1")))
