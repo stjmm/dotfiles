@@ -4,9 +4,9 @@ set $term foot
 set $menu wofi --show drun
 
 # Output
-output eDP-2 {
+output * {
 	resolution 2880x1800@60Hz
-	scale 1.5
+	scale 1.6
 	adaptive_sync on
     bg ~/Pictures/wall/0029.jpg fill #000000
 }

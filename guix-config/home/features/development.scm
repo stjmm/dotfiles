@@ -9,7 +9,8 @@
 (use-package-modules assembly autotools base build-tools cmake
                      gdb guile llvm pkg-config python-xyz valgrind
                      virtualization chez commencement flex shellutils
-                     tree-sitter linux valgrind mtools rust golang)
+                     tree-sitter linux valgrind mtools rust golang
+                     embedded)
 
 (define development-home-packages
   (list gcc-toolchain
@@ -37,6 +38,11 @@
         qemu
         nasm
         mtools
+
+        ;; Embedded
+        (make-arm-none-eabi-toolchain-12.3.rel1)
+        (make-gdb-arm-none-eabi)
+        openocd
 
         ;; Other langs
         rust
