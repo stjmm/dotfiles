@@ -136,7 +136,10 @@ vim.lsp.config("clangd", {
         "--compile-commands-dir=build"
     },
     init_options = {
-        fallbackFlags = { "-std=c23" }
+        fallbackFlags = { 
+            "-x", "c",
+            "-std=c23"
+        }
     }
 })
 
