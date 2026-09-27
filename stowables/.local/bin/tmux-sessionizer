@@ -1,29 +1,38 @@
 #!/usr/bin/env bash
 
+DIRS=(
+    "$HOME/Projects"
+    "$HOME/Projects/learn"
+)
+
 if [[ $# -eq 1 ]]; then
-    selected=$1
+    SELECTED=$1
 else
-    selected=$(find ~/Projects -mindepth 1 -maxdepth 1 -type d | fzf)
+    SELECTED=$(
+        find "${DIRS[@]}" -mindepth 1 -maxdepth 1 -type d |
+        sort -u |
+        fzf)
 fi
 
-if [[ -z $selected ]]; then
-    exit 0
+[[ -n $SELECTED ]] || exit 0
+
+if [[ -d $SELECTED ]]; then
+    echo "tmux-sessionizer: not a directory: $selected" >&2
+    exit 1
 fi
 
-selected_name=$(basename "$selected" | tr . _)
-tmux_running=$(pgrep tmux)
+SELECTED_NAME=$(basename "$SELECTED")
+SELECTED_NAME=${SELECTED_NAME//./_}
+SELECTED_NAME=${SELECTED_NAME//:/_}
 
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s $selected_name -c $selected
-    exit 0
+if ! tmux has-session -t "$SELECTED_NAME" 2>/dev/null; then
+    tmux new-session -d \
+        -s "$SELECTED_NAME" \
+        -c "$SELECTED"
 fi
 
-if ! tmux has-session -t=$selected_name 2> /dev/null; then
-    tmux new-session -ds $selected_name -c $selected
-fi
-
-if [[ -z $TMUX ]]; then
-    tmux attach -t $selected_name
+if [[ -n ${TMUX:-} ]]; then
+    tmux switch-client -t "$SELECTED_NAME"
 else
-    tmux switch-client -t $selected_name
+    tmux attach-session -t "$SELECTED_NAME"
 fi

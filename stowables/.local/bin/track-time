@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+CATEGORIES=(
+    "WORK"
+    "ART"
+    "WASTE"
+    "STOP"
+)
+
+SELECTED=$(printf '%s\n' "${CATEGORIES[@]}" | fzf) || exit 0
+
+[[ -n $SELECTED ]] || exit 0
+
+if [[ $SELECTED == "STOP" ]]; then
+    timew stop
+else
+    timew start "$SELECTED"
+fi

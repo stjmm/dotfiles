@@ -8,7 +8,7 @@
 
 (use-package-modules admin compression file ncurses rust-apps tmux
                      version-control vim pdf task-management
-                     package-management image-viewers tex emacs)
+                     package-management image-viewers terminals emacs)
 
 (define common-home-packages
   (list git
@@ -17,6 +17,7 @@
         emacs
         tmux
         ripgrep
+        fzf
         file
         zip
         unzip
