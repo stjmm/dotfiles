@@ -1,1 +1,105 @@
-alias vim='nvim'
+[[ $- == *i* ]] || return
+
+# ------------
+# History
+# ------------
+
+HISTCONTROL=ignoreboth:erasedups
+HISTSIZE=10000
+HISTFILESIZE=50000
+
+shopt -s histappend
+shopt -s cmdhist
+shopt -s checkwinsize
+shopt -s cdspell
+
+shopt -s autocd 2>/dev/null || true
+shopt -s dirspell 2>/dev/null || true
+
+
+# ------------
+# Colors
+# ------------
+
+C_RESET='\[\e[0m\]'
+C_BOLD='\[\e[1m\]'
+C_DIM='\[\e[2m\]'
+
+# Prompt theme
+C_USER='\[\e[34m\]'
+C_AT='\[\e[35m\]'
+C_HOST='\[\e[92m\]'
+C_CWD='\[\e[34m\]'
+C_GIT='\[\e[33m\]'
+C_PROMPT='\[\e[32m\]'
+C_ERROR='\[\e[31m\]'
+C_MUTED='\[\e[90m\]'
+
+
+# ------------
+# Aliases
+# ------------
+
+# GNU ls
+if ls --color=auto /dev/null >/dev/null 2>&1; then
+    alias ls='ls --color=auto -F'
+
+# BSD/macOS ls
+elif ls -G /dev/null >/dev/null 2>&1; then
+    alias ls='ls -G -F'
+fi
+
+alias vim=nvim
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
+# ------------
+# Prompt
+# ------------
+
+_git_branch() {
+    local branch
+    branch=$(git symbolic-ref --quiet --short HEAD 2>/dev/null) || {
+        local commit
+        commit=$(git rev-parse --short HEAD 2>/dev/null) || return 0
+
+        printf 'detached:%s' "$commit"
+        return 0
+    }
+
+    printf '%s' "$branch"
+}
+
+_prompt_command() {
+    local exit_code=$?
+    local branch
+    local git_part
+    local status_part
+
+    branch=$(_git_branch)
+
+    if [[ -n $branch ]]; then
+        git_part=" ${C_DIM}(${C_GIT}git:${branch}${C_DIM})${C_RESET}"
+    else
+        git_part=''
+    fi
+
+    if ((exit_code != 0)); then
+        status_part="${C_ERROR}[${exit_code}]${C_RESET} "
+    else
+        status_part=''
+    fi
+
+    PS1="${status_part}"
+    PS1+="${C_USER}\u"
+    PS1+="${C_AT}@"
+    PS1+="${C_HOST}\h"
+    PS1+=" ${C_CWD}\w"
+    PS1+="${git_part}"
+    PS1+="${C_RESET} ${C_PROMPT}λ${C_RESET} "
+}
+
+PROMPT_COMMAND=_prompt_command
+PROMPT_DIRTRIM=5

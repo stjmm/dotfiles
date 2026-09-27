@@ -8,12 +8,13 @@
 
 (use-package-modules admin compression file ncurses rust-apps tmux
                      version-control vim pdf task-management
-                     package-management)
+                     package-management image-viewers tex emacs)
 
 (define common-home-packages
   (list git
         vim
         neovim
+        emacs
         tmux
         ripgrep
         file
@@ -26,7 +27,8 @@
         fastfetch
         ncurses
         sioyek
-        timewarrior))
+        timewarrior
+        feh))
 
 (define common-home-services
   (list

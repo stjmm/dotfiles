@@ -22,9 +22,26 @@ input type:touchpad {
 	middle_emulation enabled
 }
 
+input type:keyboard {
+    xkb_options casp:ctrl
+}
+
 # Appearance
-default_border pixel 1
-default_floating_border pixel 1
+set $bg        #121212
+set $fg        #d0d0d0
+set $surface   #1e1e1e
+set $hover     #2a2a2a
+set $border    #3a3a3a
+set $muted     #505050
+
+#                      border    background text   indicator child_border
+client.focused          $fg       $bg        $fg    $fg       $fg
+client.focused_inactive $border   $bg        $fg    $border   $border
+client.unfocused        $surface  $bg        $muted $surface  $surface
+client.urgent           #6b3a3a   #6b3a3a    $fg    #6b3a3a   #6b3a3a
+
+default_border pixel 2
+default_floating_border pixel 2
 hide_edge_borders smart
 gaps inner 0
 gaps outer 0

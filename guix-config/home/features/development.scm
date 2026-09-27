@@ -10,7 +10,7 @@
                      gdb guile llvm pkg-config python-xyz valgrind
                      virtualization chez commencement flex shellutils
                      tree-sitter linux valgrind mtools rust golang
-                     embedded man)
+                     embedded man haskell-apps)
 
 (define development-home-packages
   (list gcc-toolchain
@@ -35,6 +35,7 @@
         gdb
         valgrind
         strace
+        shellcheck
 
         ;; OS dev
         qemu
